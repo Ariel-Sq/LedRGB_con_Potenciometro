@@ -1,0 +1,28 @@
+const int ledRojo = 11;
+const int ledAzul = 10;
+const int ledVerde = 9;
+const int pote = (A0);
+int valorPote;
+
+void setup()
+{
+  pinMode(pote, INPUT);
+  pinMode(ledRojo, OUTPUT);
+  pinMode(ledAzul, OUTPUT);
+  pinMode(ledVerde, OUTPUT);
+  Serial.begin(9600);
+}
+
+void loop()
+{
+  valorPote = analogRead(pote);
+  int intensidad = map(valorPote, 0, 1023, 0, 255);
+  Serial.print(intensidad);
+  
+  analogWrite(ledRojo, intensidad);
+  analogWrite(ledVerde, 255 - intensidad);
+  analogWrite(ledAzul, 0);
+
+  
+  delay(100);
+}
